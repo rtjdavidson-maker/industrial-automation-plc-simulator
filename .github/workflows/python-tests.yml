@@ -1,0 +1,17 @@
+name: Conveyor PLC Simulator Tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Run automated unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Generate demo dashboard
+        run: python main.py
