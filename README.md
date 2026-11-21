@@ -65,6 +65,36 @@ The simulator outputs a CSV-like event trace on the terminal, `output/plc_trace.
 | `tests/test_controller.py` | 21 automated tests covering logic, recovery, counting, and reports |
 | `.github/workflows/python-tests.yml` | Automated Python test workflow on GitHub |
 
+## Verified software demonstration — screenshots
+
+The screenshots below were captured while running this **educational Python simulation on Windows**. They are not photographs of a physical PLC or motor system.
+
+### 1. Conveyor operation and fault handling
+
+The console traces **19 simulated controller scans**, including START, three photoeye-triggered product counts, a jam fault, deliberate fault reset, restart, and a latched emergency-stop input. The motor *command* is off while faults are active.
+
+![Windows Command Prompt tracing conveyor startup, product counts, jam fault, reset, and emergency stop](Screenshot%202026-11-21%20144946.png)
+
+### 2. Automated unit tests
+
+The Windows test run completed **21 tests with an OK result**. Tests exercise motor control states, product counting, fault latching, reset behavior, and report generation.
+
+![Command Prompt showing 21 successful Python PLC logic unit tests](Screenshot%202026-11-21%20145242.png)
+
+### 3. HTML diagnostics dashboard
+
+The offline dashboard summarizes **19 scans, 3 counted products, 4 fault/E-stop scans**, and a final controller state of **IDLE**, then displays the event timeline.
+
+![Industrial conveyor PLC simulation HTML dashboard summary and initial events](Screenshot%202026-11-21%20145304.png)
+
+### 4. Fault recovery and emergency-stop input sequence
+
+The detailed event log shows the jam fault remaining latched after the simulated jam sensor clears, followed by operator reset. Later, the simulated emergency-stop input also remains latched after release and requires a reset before returning to IDLE.
+
+![Industrial conveyor simulation log showing jam fault, recovery, and latched emergency-stop behavior](Screenshot%202026-11-21%20145340.png)
+
+**Scope:** These results validate the software model and its reporting. No physical machinery, certified safety controller, or electrical safety circuit was tested.
+
 ## Test it and learn
 
 ```cmd
